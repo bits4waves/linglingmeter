@@ -1,6 +1,6 @@
 ;; Rafael Beirigo
 
-;; (load "/home/rafa/dev/audacity/fft.lsp")
+;; (load "/home/rafa/dev/resonometer/nyquist/fft.lsp")
 
 ;; Play my recorded A440 sound
 ;; (setf sfn "./a440.wav")
@@ -44,7 +44,7 @@
   (play (snd-ifft 0 *sound-srate* iterator skip NIL)))
 
 ;; a convenient sound file name (change this to one of your soundfiles):
-(setf sfn "/home/rafa/dev/audacity/a440.wav")
+(setf sfn "/home/rafa/dev/resonometer/nyquist/a440.wav")
 
 (defun file-test () (play-fft1 (file-fft1 sfn 512 512) 512))
 
@@ -56,7 +56,9 @@
       '((let ((frame (send source :next)))
           (cond (frame
                  (dotimes (i bins)
-                   (setf (aref frame i) 0.0))))
+                   (print
+                    ;; (format t "Zero crossings from a-snd: ~A~%" z)
+                    (format t "Frame: ~A~%" frame)))))
           frame)))
 
 (send fft-hp-class :answer :isnew
