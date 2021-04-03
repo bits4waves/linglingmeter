@@ -1,22 +1,32 @@
-<2021-03-27 Sat>
-
 Plucked A string of a violin.
 
 The string was tuned to 440 Hz using the app
-Cleartune - Chromatic Tuner
-version 1.5.1, by Bitcount ltd
-
+- Cleartune - Chromatic Tuner
+- version 1.5.1
+- by Bitcount ltd.
 on the phone
-Samsung Galaxy S9 SM-G9600
+- Samsung Galaxy S9 SM-G9600
 
-* Recorded with
-OBS Studio - 26.1.2-289-gb98bad1f3 (linux)
-
+It was then plucked and the sound recorded with
+- OBS Studio - 26.1.2-289-gb98bad1f3 (linux)
 through
-https://obs.ninja/
+- https://obs.ninja/
 
-Using the phone
-Samsung Galaxy S9 SM-G9600
+To do that, the website above was opened on the phone in the app
+- Google Chrome
+- version 89.0.4389.105
+- by Google LLC
+on the phone
+- Samsung Galaxy S9 SM-G9600
+
+The functionality "Add your Camera to OBS" from the website was used, with the settings
+- Video Source: Disable Video
+- Audio Source: Default
+
+After clicking "START", the audio settings were changed to:
+- autoGainControl: false
+- echoCancelation: false
+- noiseSuppression: false
 
 * Post processing
 The software
@@ -25,3 +35,5 @@ Audacity v2.2.2
 Was used to 
 - remove one of the stereo channels
 - export the final file WAV file
+
+<2021-03-27 Sat>
