@@ -28,11 +28,10 @@ After clicking "START", the audio settings were changed to:
 - echoCancelation: false
 - noiseSuppression: false
 
-* Post processing
-The software
+The recorded sound was post processed using the software
 Audacity v2.2.2
 
-Was used to 
+It was used to 
 - remove one of the stereo channels
 - export the final file WAV file
 
