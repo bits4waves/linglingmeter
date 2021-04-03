@@ -1,0 +1,20 @@
+<2021-03-27 Sat>
+
+Plucked A string of a violin.
+
+* Recorded with
+OBS Studio - 26.1.2-289-gb98bad1f3 (linux)
+
+through
+https://obs.ninja/
+
+Using the phone
+Samsung Galaxy S9 SM-G9600
+
+* Post processing
+The software
+Audacity v2.2.2
+
+Was used to 
+- remove one of the stereo channels
+- export the final file WAV file
