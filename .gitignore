@@ -4,6 +4,8 @@
 .\#*
 TAGS
 
+*.png
+
 # Python
 venv
 __pycache__
