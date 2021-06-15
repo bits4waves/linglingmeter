@@ -2,6 +2,8 @@ import librosa
 
 VIOLIN_MIN_F=librosa.note_to_hz('G3')
 VIOLIN_MAX_F=librosa.note_to_hz('E7')
+FIFTY_CENTS_BWD = pow(2, -50/1200)
+FIFTY_CENTS_FWD = pow(2, 50/1200)
 
 
 def get_pitch_series(snd_filename, fmin=VIOLIN_MIN_F,
