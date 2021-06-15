@@ -3,6 +3,7 @@ import librosa
 VIOLIN_MIN_F=librosa.note_to_hz('G3')
 VIOLIN_MAX_F=librosa.note_to_hz('E7')
 
+
 def get_pitch_series(snd_filename, fmin=VIOLIN_MIN_F,
                      fmax=VIOLIN_MAX_F):
     """Extract f0 history from sound file."""
