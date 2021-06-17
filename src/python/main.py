@@ -18,7 +18,6 @@ def get_pitch_series(snd_filename, fmin=VIOLIN_MIN_F,
     return y, f0
 
 
-y, pitch = get_pitch_series('/home/rafa/sci/sound/440-02-partials/440-02-partials.wav')
 def integrate_partials(frequencies, spectrogram):
     """Sum the intensities of peaks in spectrogram.
 
@@ -71,6 +70,7 @@ def integrate_partials(frequencies, spectrogram):
     """
 
 
+y, pitch = get_pitch_series('/home/rafa/sci/sound/440-02-partials/440-02-partials.wav')
 
 # Overlay F0 over a spectrogram
 
