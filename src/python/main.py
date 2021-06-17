@@ -92,10 +92,11 @@ import numpy as np
 import librosa.display
 
 amplitude = np.abs(librosa.stft(y))
-dB = librosa.amplitude_to_db(amplitude, ref=np.max)
+spectrum = librosa.amplitude_to_db(amplitude, ref=np.max)
+frequencies = list(librosa.fft_frequencies())
 
 fig, ax = plt.subplots()
-img = librosa.display.specshow(dB, x_axis='time', y_axis='log', ax=ax)
+img = librosa.display.specshow(spectrum, x_axis='time', y_axis='log', ax=ax)
 ax.set(title='pYIN fundamental frequency estimation')
 fig.colorbar(img, ax=ax, format="%+2.f dB")
 times = librosa.times_like(pitch)
