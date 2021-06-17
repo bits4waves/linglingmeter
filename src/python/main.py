@@ -2,7 +2,9 @@ import librosa
 
 VIOLIN_MIN_F=librosa.note_to_hz('G3')
 VIOLIN_MAX_F=librosa.note_to_hz('E7')
+# Approximately 0.9715319411536059
 FIFTY_CENTS_BWD = pow(2, -50/1200)
+# Approximately 1.029302236643492
 FIFTY_CENTS_FWD = pow(2, 50/1200)
 
 
