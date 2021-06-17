@@ -19,6 +19,58 @@ def get_pitch_series(snd_filename, fmin=VIOLIN_MIN_F,
 
 
 y, pitch = get_pitch_series('/home/rafa/sci/sound/440-02-partials/440-02-partials.wav')
+def integrate_partials(frequencies, spectrogram):
+    """Sum the intensities of peaks in spectrogram.
+
+    The spectrogram is an array with intensities in dB, like:
+
+    | partial | frequency | min_x | max_x |
+    |---------+-----------+-------+-------|
+    |       1 |       220 |   214 |   226 |
+    |       2 |       440 |   427 |   453 |
+    |       3 |       660 |   641 |   679 |
+
+    |  i | spectrogram (dB) | frequencies (Hz) |
+    |----+------------------+------------------|
+    |  0 | 0                |               50 |
+    |  1 |                  |              100 |
+    |  2 |                  |              150 |
+    |  3 | x                |              200 |
+    |  4 |                  |              250 |
+    |  5 |                  |              300 |
+    |  6 |                  |              350 |
+    |  7 |                  |              400 |
+    |  8 | x                |              450 |
+    |  9 |                  |              500 |
+    | 10 |                  |              550 |
+    | 11 |                  |              600 |
+    | 12 |                  |              650 |
+    | 13 |                  |              700 |
+    | 14 |                  |              750 |
+    | 15 |                  |              800 |
+
+    encontra f0
+
+    i = 0
+    partial = 1
+    integral = 0
+    enquanto i < len(frequencias):
+        pico_atual = f0 * partial
+
+        x_min = deduz_50_cents(pico_atual)
+        x_max = adiciona_50_cents(pico_atual)
+
+        enquanto frequencias[i] < x_min:
+            i += 1
+
+        enquanto frequencias[i] < x_max:
+            integral += espectrograma[i]
+            i += 1
+
+        partial += 1
+    """
+
+
 
 # Overlay F0 over a spectrogram
 
