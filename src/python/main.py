@@ -18,35 +18,48 @@ def get_pitch_series(snd_filename, fmin=VIOLIN_MIN_F,
     return y, f0
 
 
-def integrate_partials(frequencies, spectrogram):
-    """Sum the intensities of peaks in spectrogram.
+def integrate_partials(frequencies, spectrum):
+    """Sum the intensities of the peaks in a sound spectrum.
 
-    The spectrogram is an array with intensities in dB, like:
+    This function integrates the peaks corresponding to the partials.
+
+    ‘spectrum’ is an array with sound the sound intensities (dB)
+    for each frequency (Hz) in ‘frequencies’.
+
+
+    Example:
+
+    Suppose we have a sound sample containing:
+    220 Hz as the fundamental (1st partial), along with the first 2
+    upper partials, 2 * 220 = 440 Hz, and 3 * 220 = 660 Hz.
+
+    In this case, we could have the following arrays for ‘spectrum’
+    and ‘frequencies’:
+
+    |  i | frequencies | spectrum |
+    |----+-------------+-------------|
+    |  0 |          50 | -80         |
+    |  1 |         100 |             |
+    |  2 |         150 |             |
+    |  3 |         200 | x           |
+    |  4 |         250 |             |
+    |  5 |         300 |             |
+    |  6 |         350 |             |
+    |  7 |         400 |             |
+    |  8 |         450 | x           |
+    |  9 |         500 |             |
+    | 10 |         550 |             |
+    | 11 |         600 |             |
+    | 12 |         650 |             |
+    | 13 |         700 |             |
+    | 14 |         750 |             |
+    | 15 |         800 |             |
 
     | partial | frequency | min_x | max_x |
     |---------+-----------+-------+-------|
     |       1 |       220 |   214 |   226 |
     |       2 |       440 |   427 |   453 |
     |       3 |       660 |   641 |   679 |
-
-    |  i | spectrogram (dB) | frequencies (Hz) |
-    |----+------------------+------------------|
-    |  0 | 0                |               50 |
-    |  1 |                  |              100 |
-    |  2 |                  |              150 |
-    |  3 | x                |              200 |
-    |  4 |                  |              250 |
-    |  5 |                  |              300 |
-    |  6 |                  |              350 |
-    |  7 |                  |              400 |
-    |  8 | x                |              450 |
-    |  9 |                  |              500 |
-    | 10 |                  |              550 |
-    | 11 |                  |              600 |
-    | 12 |                  |              650 |
-    | 13 |                  |              700 |
-    | 14 |                  |              750 |
-    | 15 |                  |              800 |
 
     encontra f0
 
@@ -63,7 +76,7 @@ def integrate_partials(frequencies, spectrogram):
             i += 1
 
         enquanto frequencias[i] < x_max:
-            integral += espectrograma[i]
+            integral += espectro[i]
             i += 1
 
         partial += 1
