@@ -94,7 +94,8 @@ def integrate_partials(frequencies, spectrum):
     | 126 |        1357 |      -51 | X                   |
     | 127 |        1367 |      -58 | -                   |
     | 128 |        1378 |      -63 | -                   |
-
+    """
+    """
     encontra f0
 
     i = 0
