@@ -26,42 +26,81 @@ def integrate_partials(frequencies, spectrum):
     ‘spectrum’ is an array with sound the sound intensities (dB)
     for each frequency (Hz) in ‘frequencies’.
 
-
     Example:
 
     Suppose we have a sound sample containing:
-    220 Hz as the fundamental (1st partial), along with the first 2
-    upper partials, 2 * 220 = 440 Hz, and 3 * 220 = 660 Hz.
+    440 Hz as the fundamental (1st partial), along with the first 2
+    upper partials, 2 * 440 = 880 Hz, and 3 * 440 = 1320 Hz.
+
+    For each partial, we determine the intervals to integrate.
+    In this example, the threshold is more or less 50 cents
+    (see https://en.wikipedia.org/wiki/Cent_(music)).
+
+    We use the proper formula to calculate it:
+
+    FIFTY_CENTS_BELOW = pow(2, -50/1200)
+    FIFTY_CENTS_ABOVE = pow(2, 50/1200)
+
+    For instance, for 440 Hz:
+
+    min_x = 440 * FIFTY_CENTS_BELOW
+    max_x = 440 * FIFTY_CENTS_ABOVE
+
+    This is shown in the table below.
+
+    | partial | frequency | min_x | max_x |
+    |---------+-----------+-------+-------|
+    |       1 |       440 |   427 |   453 |
+    |       2 |       880 |   855 |   906 |
+    |       3 |      1320 |  1282 |  1359 |
 
     In this case, we could have the following arrays for ‘spectrum’
     and ‘frequencies’:
 
-    |  i | frequencies | spectrum |
-    |----+-------------+-------------|
-    |  0 |          50 | -80         |
-    |  1 |         100 |             |
-    |  2 |         150 |             |
-    |  3 |         200 | x           |
-    |  4 |         250 |             |
-    |  5 |         300 |             |
-    |  6 |         350 |             |
-    |  7 |         400 |             |
-    |  8 |         450 | x           |
-    |  9 |         500 |             |
-    | 10 |         550 |             |
-    | 11 |         600 |             |
-    | 12 |         650 |             |
-    | 13 |         700 |             |
-    | 14 |         750 |             |
-    | 15 |         800 |             |
-
-    | partial | frequency | min_x | max_x |
-    |---------+-----------+-------+-------|
-    |       1 |       220 |   214 |   226 |
-    |       2 |       440 |   427 |   453 |
-    |       3 |       660 |   641 |   679 |
+    |   i | frequencies | spectrum | min_x <= x <= max_x |
+    |-----+-------------+----------+---------------------|
+    |   0 |           0 |      -80 | -                   |
+    |   1 |          11 |      -80 | -                   |
+    |   2 |          22 |      -80 | -                   |
+    | ... |         ... |      ... | ...                 |
+    |  38 |         409 |      -44 | -                   |
+    |  37 |         398 |      -52 | -                   |
+    |  40 |         431 |       -4 | X                   |
+    |  41 |         441 |        0 | X                   |
+    |  42 |         452 |       -8 | X                   |
+    |  43 |         463 |      -35 | -                   |
+    |  44 |         474 |      -47 | -                   |
+    | ... |         ... |      ... | ...                 |
+    |  78 |         840 |      -51 | -                   |
+    |  79 |         851 |      -42 | -                   |
+    |  80 |         861 |      -28 | X                   |
+    |  81 |         872 |       -8 | X                   |
+    |  82 |         883 |       -5 | X                   |
+    |  83 |         894 |      -15 | X                   |
+    |  84 |         904 |      -36 | X                   |
+    |  85 |         915 |      -47 | -                   |
+    |  86 |         926 |      -54 | -                   |
+    | ... |         ... |      ... | ...                 |
+    | 118 |        1270 |      -59 | -                   |
+    | 119 |        1281 |      -52 | -                   |
+    | 120 |        1292 |      -43 | X                   |
+    | 121 |        1303 |      -28 | X                   |
+    | 122 |        1314 |      -11 | X                   |
+    | 123 |        1324 |      -10 | X                   |
+    | 124 |        1335 |      -22 | X                   |
+    | 125 |        1346 |      -41 | X                   |
+    | 126 |        1357 |      -51 | X                   |
+    | 127 |        1367 |      -58 | -                   |
+    | 128 |        1378 |      -63 | -                   |
 
     encontra f0
+
+
+    >>> pow(2, -50/1200)
+    0.9715319411536059
+    >>> pow(2, 50/1200)
+    1.029302236643492
+
 
     i = 0
     partial = 1
@@ -81,9 +120,10 @@ def integrate_partials(frequencies, spectrum):
 
         partial += 1
     """
+    pass
 
 
-y, pitch = get_pitch_series('/home/rafa/sci/sound/440-02-partials/440-02-partials.wav')
+y, pitch = get_pitch_series('/home/rafa/dev/sound/440-10-partials/440-10-partials.wav')
 
 # Overlay F0 over a spectrogram
 
@@ -93,7 +133,7 @@ import librosa.display
 
 amplitude = np.abs(librosa.stft(y))
 spectrum = librosa.amplitude_to_db(amplitude, ref=np.max)
-frequencies = list(librosa.fft_frequencies())
+frequencies = librosa.fft_frequencies()
 
 fig, ax = plt.subplots()
 img = librosa.display.specshow(spectrum, x_axis='time', y_axis='log', ax=ax)
