@@ -54,8 +54,10 @@ def integrate_partials(frequencies, spectrum):
     |       2 |       880 |   855 |   906 |
     |       3 |      1320 |  1282 |  1359 |
 
-    In this case, we could have the following arrays for ‘spectrum’
-    and ‘frequencies’:
+    In this case, we could have the following arrays for
+    ‘frequencies’ and  ‘spectrum’ shown in the table below.  The
+    ‘X’’s in the last column mark the values that fall inside the
+    interval we want to integrate.
 
     |   i | frequencies | spectrum | min_x <= x <= max_x |
     |-----+-------------+----------+---------------------|
@@ -94,13 +96,6 @@ def integrate_partials(frequencies, spectrum):
     | 128 |        1378 |      -63 | -                   |
 
     encontra f0
-
-
-    >>> pow(2, -50/1200)
-    0.9715319411536059
-    >>> pow(2, 50/1200)
-    1.029302236643492
-
 
     i = 0
     partial = 1
