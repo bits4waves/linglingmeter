@@ -116,9 +116,10 @@ def integrate_partials(frequencies, spectrum):
 
         partial += 1
     """
+    # i should be able to do with f0 and integration_limits
     thing = {'f0': 440,
              'integration_limits': (427, 453),
-             'array_indexes': [40, 42],
+             'array_indexes': [40, 41, 42],
              'frequencies': [431, 441, 452],
              'spectrum': [-4, 0, -8],
              'integral': None}
