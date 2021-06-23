@@ -8,7 +8,7 @@ FIFTY_CENTS_BWD = pow(2, -50/1200)
 FIFTY_CENTS_FWD = pow(2, 50/1200)
 
 
-def get_pitch_series(snd_filename, fmin=VIOLIN_MIN_F,
+def get_f0_series(snd_filename, fmin=VIOLIN_MIN_F,
                      fmax=VIOLIN_MAX_F):
     """Extract f0 history from sound file."""
     y, sr = librosa.load(snd_filename)
@@ -126,7 +126,7 @@ def integrate_partials(frequencies, spectrum):
     pass
 
 
-y, pitch = get_pitch_series('/home/rafa/dev/sound/440-10-partials/440-10-partials.wav')
+y, f0 = get_f0_series('/home/rafa/dev/sound/440-10-partials/440-10-partials.wav')
 
 # Overlay F0 over a spectrogram
 
@@ -142,10 +142,10 @@ fig, ax = plt.subplots()
 img = librosa.display.specshow(spectrum, x_axis='time', y_axis='log', ax=ax)
 ax.set(title='pYIN fundamental frequency estimation')
 fig.colorbar(img, ax=ax, format="%+2.f dB")
-times = librosa.times_like(pitch)
-ax.plot(times, pitch*FIFTY_CENTS_BWD, label='bwd', color='red', linewidth=1)
-ax.plot(times, pitch, label='f0', color='cyan', linewidth=1)
-ax.plot(times, pitch*FIFTY_CENTS_FWD, label='fwd', color='red', linewidth=1)
+times = librosa.times_like(f0)
+ax.plot(times, f0*FIFTY_CENTS_BWD, label='bwd', color='red', linewidth=1)
+ax.plot(times, f0, label='f0', color='cyan', linewidth=1)
+ax.plot(times, f0*FIFTY_CENTS_FWD, label='fwd', color='red', linewidth=1)
 ax.legend(loc='upper right')
 fig.savefig('plot.png')
 
