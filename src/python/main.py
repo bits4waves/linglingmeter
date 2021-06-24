@@ -160,3 +160,6 @@ fig.savefig('plot.png')
 #             integral_peaks += integrate_peak(peak)
 
 # score = integral_peaks / integrate_tail(pitch)
+
+if __name__ == '__main__':
+    main()
