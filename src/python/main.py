@@ -161,5 +161,24 @@ fig.savefig('plot.png')
 
 # score = integral_peaks / integrate_tail(pitch)
 
+
+def main():
+
+    # Some questions for when I’m working with the f0 series:
+    # Q: do I want/need to calculate this every time (note) (what about vibrato?)?
+    # Q: should I build a database of f0’s and corresponding thresholds?
+    # A: here I think definitely
+    # Q: should I round the values to reduce the possible f0’s?
+
+    # Focusing on just one “chunk” of reading
+    # Maybe create a class here?
+    f0 = get_f0()
+    thresholds = []
+
+    peaks_integral≃= integrate_peaks()
+    total_integral = integrate_all()
+    lingling_measure = peaks_integral / total_integral
+
+
 if __name__ == '__main__':
     main()
