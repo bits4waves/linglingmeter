@@ -18,7 +18,7 @@ def get_f0_series(snd_filename, fmin=VIOLIN_MIN_F,
     return y, f0
 
 
-def integrate_partials(frequencies, spectrum):
+def integrate_peaks(f0, thresholds, frequencies, spectrum):
     """Sum the intensities of the peaks in a sound spectrum.
 
     This function integrates the peaks corresponding to the partials.
