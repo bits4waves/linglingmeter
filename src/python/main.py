@@ -176,7 +176,7 @@ def main():
     f0 = get_f0()
     thresholds = []
 
-    peaks_integral≃= integrate_peaks()
+    peaks_integral≃= integrate_peaks(f0, thresholds)
     total_integral = integrate_all()
     lingling_measure = peaks_integral / total_integral
 
