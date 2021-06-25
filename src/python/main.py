@@ -18,6 +18,12 @@ def get_f0_series(snd_filename, fmin=VIOLIN_MIN_F,
     return y, f0
 
 
+# TODO
+def get_threshold(thresholds, i):
+    """Return min and max x values for a given frequency index."""
+    return (None, None)
+
+
 def integrate_peaks(f0, thresholds, frequencies, spectrum):
     """Sum the intensities of the peaks in a sound spectrum.
 
@@ -95,27 +101,22 @@ def integrate_peaks(f0, thresholds, frequencies, spectrum):
     | 127 |        1367 |      -58 | -                   |
     | 128 |        1378 |      -63 | -                   |
     """
-    """
-    encontra f0
-
     i = 0
-    partial = 1
+    partial = {'n': 1, 'f': None}
     integral = 0
-    enquanto i < len(frequencias):
-        pico_atual = f0 * partial
+    while i < len(frequencies):
+        partial['f'] = partial['n'] * f0
+        x_min, x_max = get_threshold(thresholds, i)
 
-        x_min = deduz_50_cents(pico_atual)
-        x_max = adiciona_50_cents(pico_atual)
-
-        enquanto frequencias[i] < x_min:
+        while frequencies[i] < x_min:
             i += 1
 
-        enquanto frequencias[i] < x_max:
-            integral += espectro[i]
+        while frequencies[i] < x_max:
+            integral += spectrum[i]
             i += 1
 
-        partial += 1
-    """
+        partial['n'] += 1
+
     # i should be able to do with f0 and integration_limits
     thing = {'f0': 440,
              'integration_limits': (427, 453),
