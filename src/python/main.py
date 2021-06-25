@@ -169,6 +169,7 @@ def main():
     # Q: should I build a database of f0’s and corresponding thresholds?
     # A: here I think definitely
     # Q: should I round the values to reduce the possible f0’s?
+    # Q: in the resolution that I use here for frequencies, what’s the sensible rounding scheme (if any)?
 
     # Focusing on just one “chunk” of reading
     # Maybe create a class here?
