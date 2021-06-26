@@ -2,11 +2,9 @@ import librosa
 
 VIOLIN_MIN_F=librosa.note_to_hz('G3')
 VIOLIN_MAX_F=librosa.note_to_hz('E7')
-# Approximately 0.9715319411536059
-FIFTY_CENTS_BWD = pow(2, -50/1200)
-# Approximately 1.029302236643492
-FIFTY_CENTS_FWD = pow(2, 50/1200)
-
+# Amount of cents before and after peak frequency to include in the
+# integration interval.
+THRESHOLD_CENTS=50
 
 def get_f0_series(snd_filename, fmin=VIOLIN_MIN_F,
                      fmax=VIOLIN_MAX_F):
@@ -16,6 +14,15 @@ def get_f0_series(snd_filename, fmin=VIOLIN_MIN_F,
         librosa.pyin(y, fmin=VIOLIN_MIN_F, fmax=VIOLIN_MAX_F)
 
     return y, f0
+
+
+def create_threshold(f0, partial):
+    """Return min and max integration thresholds."""
+    # # Approximately 0.9715319411536059
+    # FIFTY_CENTS_BWD = pow(2, -50/1200)
+    # # Approximately 1.029302236643492
+    # FIFTY_CENTS_FWD = pow(2, 50/1200)
+    pass
 
 
 def get_threshold(thresholds, i):
