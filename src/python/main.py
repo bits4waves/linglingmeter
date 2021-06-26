@@ -18,10 +18,18 @@ def get_f0_series(snd_filename, fmin=VIOLIN_MIN_F,
     return y, f0
 
 
-# TODO
 def get_threshold(thresholds, i):
     """Return min and max x values for a given frequency index."""
-    return (None, None)
+    if not (i < len(thresholds)):
+        # i relates to the partial number:
+        # i == partial - 1
+        
+
+        # create that data
+        # return that data
+        pass
+
+    return thresholds[i]
 
 
 def integrate_peaks(f0, thresholds, frequencies, spectrum):
