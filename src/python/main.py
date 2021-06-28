@@ -139,40 +139,43 @@ def integrate_peaks(f0, thresholds, frequencies, spectrum):
     pass
 
 
-y, f0 = get_f0_series('/home/rafa/dev/sound/440-10-partials/440-10-partials.wav')
+def old_stuff():
+    """backup: old lingering stuff"""
+    
+    y, f0 = get_f0_series('/home/rafa/dev/sound/440-10-partials/440-10-partials.wav')
 
-# Overlay F0 over a spectrogram
+    # Overlay F0 over a spectrogram
 
-import matplotlib.pyplot as plt
-import numpy as np
-import librosa.display
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import librosa.display
 
-amplitude = np.abs(librosa.stft(y))
-spectrum = librosa.amplitude_to_db(amplitude, ref=np.max)
-frequencies = librosa.fft_frequencies()
+    amplitude = np.abs(librosa.stft(y))
+    spectrum = librosa.amplitude_to_db(amplitude, ref=np.max)
+    frequencies = librosa.fft_frequencies()
 
-fig, ax = plt.subplots()
-img = librosa.display.specshow(spectrum, x_axis='time', y_axis='log', ax=ax)
-ax.set(title='pYIN fundamental frequency estimation')
-fig.colorbar(img, ax=ax, format="%+2.f dB")
-times = librosa.times_like(f0)
-ax.plot(times, f0*FIFTY_CENTS_BWD, label='bwd', color='red', linewidth=1)
-ax.plot(times, f0, label='f0', color='cyan', linewidth=1)
-ax.plot(times, f0*FIFTY_CENTS_FWD, label='fwd', color='red', linewidth=1)
-ax.legend(loc='upper right')
-fig.savefig('plot.png')
+    fig, ax = plt.subplots()
+    img = librosa.display.specshow(spectrum, x_axis='time', y_axis='log', ax=ax)
+    ax.set(title='pYIN fundamental frequency estimation')
+    fig.colorbar(img, ax=ax, format="%+2.f dB")
+    times = librosa.times_like(f0)
+    ax.plot(times, f0*FIFTY_CENTS_BWD, label='bwd', color='red', linewidth=1)
+    ax.plot(times, f0, label='f0', color='cyan', linewidth=1)
+    ax.plot(times, f0*FIFTY_CENTS_FWD, label='fwd', color='red', linewidth=1)
+    ax.legend(loc='upper right')
+    fig.savefig('plot.png')
 
-# for each entry in the array
-# find peaks
-# extract pitch
+    # for each entry in the array
+    # find peaks
+    # extract pitch
 
-# for i = 1, 2, …, len(peaks)
-#     partial = pitch * i
-#     for peak in peaks
-#         if abs((partial - peak) / partial) ≤ threshold
-#             integral_peaks += integrate_peak(peak)
+    # for i = 1, 2, …, len(peaks)
+    #     partial = pitch * i
+    #     for peak in peaks
+    #         if abs((partial - peak) / partial) ≤ threshold
+    #             integral_peaks += integrate_peak(peak)
 
-# score = integral_peaks / integrate_tail(pitch)
+    # score = integral_peaks / integrate_tail(pitch)
 
 
 def main():
