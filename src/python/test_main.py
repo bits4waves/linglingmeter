@@ -32,7 +32,7 @@ class TestMain(unittest.TestCase):
         self.fail()
 
 
-    def test_something(self):
+    def test_create_threshold(self):
         self.fail()
 
 
