@@ -16,10 +16,10 @@ def get_f0_series(snd_filename, fmin=VIOLIN_MIN_F,
     return y, f0
 
 
-def create_threshold(partial):
+def create_threshold(partial, cents=THRESHOLD_CENTS):
     """Return min and max integration limits."""
-    return (partial * pow(2, -THRESHOLD_CENTS/1200),
-            partial * pow(2, THRESHOLD_CENTS/1200))
+    return (partial * pow(2, -cents/1200),
+            partial * pow(2, cents/1200))
 
 
 def get_threshold(thresholds, i):
