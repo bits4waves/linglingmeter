@@ -26,5 +26,12 @@ class TestCreateThreshold(unittest.TestCase):
                          (220.0, 880.0))
 
 
+    def test_create_threshold_default_cents(self):
+        """Uses 50 cents as default value for threshold."""
+        self.assertAlmostEqual(main.create_threshold(440),
+                               (427.4740541075866,
+                                452.8929841231365))
+
+
 if __name__ == '__main__':
     unittest.main()
