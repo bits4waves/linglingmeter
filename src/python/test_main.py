@@ -1,5 +1,6 @@
 import unittest
 import main
+import logging
 
 
 def setUpModule():
