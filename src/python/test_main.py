@@ -15,7 +15,7 @@ def tearDownModule():
 class TestMain(unittest.TestCase):
 
     def test_create_threshold(self):
-        self.fail()
+        self.assertEqual(main.create_threshold(0), (0, 0))
 
 
 if __name__ == '__main__':
