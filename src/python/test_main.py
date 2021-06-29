@@ -14,24 +14,6 @@ def tearDownModule():
 
 class TestMain(unittest.TestCase):
 
-    @classmethod
-    def setUpClass(cls):
-        self.fail()
-
-
-    @classmethod
-    def tearDownClass(cls):
-        self.fail()
-
-
-    def setUp(self):
-        self.fail()
-
-
-    def tearDown(self):
-        self.fail()
-
-
     def test_create_threshold(self):
         self.fail()
 
