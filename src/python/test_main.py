@@ -13,9 +13,10 @@ def tearDownModule():
     logging.disable(logging.NOTSET)
 
 
-class TestMain(unittest.TestCase):
-
-    def test_create_threshold(self):
+class TestCreateThreshold(unittest.TestCase):
+    """Tests for function ‘create_threshold’."""
+    def test_create_threshold_zero(self):
+        """Returns zeros for partial of 0 Hz."""
         self.assertEqual(main.create_threshold(0), (0, 0))
 
 
