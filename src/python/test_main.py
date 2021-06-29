@@ -20,5 +20,11 @@ class TestCreateThreshold(unittest.TestCase):
         self.assertEqual(main.create_threshold(0), (0, 0))
 
 
+    def test_create_threshold_octave(self):
+        """Returns octaves for threshold of 1200 cents."""
+        self.assertEqual(main.create_threshold(440, 1200),
+                         (220.0, 880.0))
+
+
 if __name__ == '__main__':
     unittest.main()
