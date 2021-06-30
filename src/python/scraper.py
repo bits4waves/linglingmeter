@@ -9,7 +9,7 @@ class ArticlesSpider(scrapy.Spider):
 
     def parse(self, response):
         for i, x in \
-            enumerate(esponse.css('div.c02 p b::text').extract()):
+            enumerate(response.css('div.c02 p b::text').extract()):
             if x.find('Abbot'):
                 print(i)
                 break
