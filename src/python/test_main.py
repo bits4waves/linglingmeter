@@ -33,5 +33,19 @@ class TestCreateThreshold(unittest.TestCase):
                                 452.8929841231365))
 
 
+class TestGetThreshold(unittest.TestCase):
+    """Tests for function ‘get_threshold’."""
+    def test_get_threshold_from_empty(self):
+        """Gets the first threshold from an empty list."""
+        thresholds = []
+        i = 0
+        f0 = 440
+        # TODO: empty list has ‘len == 0’ and my test is
+        # ‘while x < len’
+        # self.assertAlmostEqual(
+        #     main.get_threshold(thresholds, 0, 440),
+        #     (427.4740541075866, 452.8929841231365))
+
+
 if __name__ == '__main__':
     unittest.main()
