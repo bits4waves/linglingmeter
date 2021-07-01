@@ -23,7 +23,3 @@ class ArticlesSpider(scrapy.Spider):
         #         'author': quote.xpath('span/small/text()').get(),
         #         'text': quote.css('span.text::text').get(),
         #     }
-
-        # next_page = response.css('li.next a::attr("href")').get()
-        # if next_page is not None:
-        #     yield response.follow(next_page, self.parse)
