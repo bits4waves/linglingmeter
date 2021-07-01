@@ -24,7 +24,7 @@ def create_threshold(partial, cents=THRESHOLD_CENTS):
 
 def get_threshold(thresholds, i, f0):
     """Return min and max x values for a given frequency index."""
-    while i < len(thresholds):
+    while i > len(thresholds) - 1:
         partial = {}
         partial['n'] = i + 1
         partial['f'] = f0 * partial['n']
