@@ -8,6 +8,7 @@ def cleanup(s):
 
 
 class ArticlesSpider(scrapy.Spider):
+
     name = 'articles'
     start_urls = ['../html/catgut-papers.html']
 
