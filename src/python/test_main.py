@@ -40,11 +40,9 @@ class TestGetThreshold(unittest.TestCase):
         thresholds = []
         i = 0
         f0 = 440
-        # TODO: empty list has ‘len == 0’ and my test is
-        # ‘while x < len’
-        # self.assertAlmostEqual(
-        #     main.get_threshold(thresholds, 0, 440),
-        #     (427.4740541075866, 452.8929841231365))
+        self.assertAlmostEqual(
+            main.get_threshold(thresholds, 0, 440),
+            (427.4740541075866, 452.8929841231365))
 
 
 if __name__ == '__main__':
