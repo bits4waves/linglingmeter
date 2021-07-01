@@ -11,6 +11,7 @@ class ArticlesSpider(scrapy.Spider):
     name = 'articles'
     start_urls = ['../html/catgut-papers.html']
 
+
     def parse(self, response):
         for i, x in \
             enumerate(response.css('div.c02 p b::text').extract()):
