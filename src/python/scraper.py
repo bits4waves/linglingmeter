@@ -1,4 +1,10 @@
 import scrapy
+import re
+
+
+def cleanup(s):
+    """Remove unwanted characters from string."""
+    return re.sub('\s+', ' ', re.sub('\n', '', s)).strip()
 
 
 class ArticlesSpider(scrapy.Spider):
