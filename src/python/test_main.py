@@ -39,7 +39,6 @@ class TestGetThreshold(unittest.TestCase):
     def test_get_threshold_from_empty(self):
         """Gets the first threshold from an empty list."""
         thresholds = []
-        i = 0
         f0 = 440
         cents = 51
         # Using a value for cents different from the default on
