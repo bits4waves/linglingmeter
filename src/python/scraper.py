@@ -16,13 +16,4 @@ class ArticlesSpider(scrapy.Spider):
     def parse(self, response):
         everything = response.css('div.c02 p b::text').extract()
         for i, x in enumerate(everything):
-            part1 = cleanup(x)
-
-            if x.find('Abbot'):
-                print(i)
-                break
-
-        #     yield {
-        #         'author': quote.xpath('span/small/text()').get(),
-        #         'text': quote.css('span.text::text').get(),
-        #     }
+            yield {'i': i, 'x': cleanup(x)}
