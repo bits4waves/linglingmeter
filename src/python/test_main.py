@@ -47,5 +47,20 @@ class TestGetThreshold(unittest.TestCase):
             (f0 * pow(2, -cents/1200), f0 * pow(2, cents/1200)))
 
 
+    def test_get_threshold_from_not_empty(self):
+        """Gets the thresholds from a non-empty list."""
+        # Using a value for cents different from the default on
+        # purpose.
+        f0, cents = 440, 51
+        thresholds = [(f0 * pow(2, -cents/1200),
+                       f0 * pow(2, cents/1200))]
+        partial = {}
+        partial['n'] = 2
+        partial['f'] = partial['n'] * f0
+        self.assertAlmostEqual(
+            main.get_threshold(thresholds, 1, f0, cents=cents),
+            (f0 * pow(2, -cents/1200), f0 * pow(2, cents/1200)))
+
+
 if __name__ == '__main__':
     unittest.main()
