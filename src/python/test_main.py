@@ -39,10 +39,9 @@ class TestGetThreshold(unittest.TestCase):
     def test_get_threshold_from_empty(self):
         """Gets the first threshold from an empty list."""
         thresholds = []
-        f0 = 440
-        cents = 51
         # Using a value for cents different from the default on
         # purpose.
+        f0, cents = 440, 51
         self.assertAlmostEqual(
             main.get_threshold(thresholds, 0, f0, cents=cents),
             (f0 * pow(2, -cents/1200), f0 * pow(2, cents/1200)))
