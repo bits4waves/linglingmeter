@@ -41,8 +41,9 @@ class TestGetThreshold(unittest.TestCase):
         thresholds = []
         i = 0
         f0 = 440
-        # Using a value different from the default on purpose.
         cents = 51
+        # Using a value for cents different from the default on
+        # purpose.
         self.assertAlmostEqual(
             main.get_threshold(thresholds, 0, f0, cents=cents),
             (f0 * pow(2, -cents/1200), f0 * pow(2, cents/1200)))
