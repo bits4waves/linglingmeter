@@ -29,8 +29,8 @@ def get_threshold(thresholds, i, f0, cents=THRESHOLD_CENTS):
         partial['n'] = i + 1
         partial['f'] = f0 * partial['n']
 
-        thresholds.append(create_threshold(partial['f']),
-                          cents=cents)
+        thresholds.append(create_threshold(partial['f'],
+                                           cents=cents))
 
     return thresholds[i]
 
