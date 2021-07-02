@@ -41,7 +41,7 @@ class TestGetThreshold(unittest.TestCase):
         i = 0
         f0 = 440
         self.assertAlmostEqual(
-            main.get_threshold(thresholds, 0, 440),
+            main.get_threshold(thresholds, 0, f0),
             (427.4740541075866, 452.8929841231365))
 
 
