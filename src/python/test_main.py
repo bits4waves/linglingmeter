@@ -28,9 +28,10 @@ class TestCreateThreshold(unittest.TestCase):
 
     def test_create_threshold_default_cents(self):
         """Uses 50 cents as default value for threshold."""
-        self.assertAlmostEqual(main.create_threshold(440),
-                               (427.4740541075866,
-                                452.8929841231365))
+        f0, cents = 440, 50
+        self.assertAlmostEqual(
+            main.create_threshold(f0),
+            (f0 * pow(2, -cents/1200), f0 * pow(2, cents/1200)))
 
 
 class TestGetThreshold(unittest.TestCase):
@@ -43,8 +44,8 @@ class TestGetThreshold(unittest.TestCase):
         # Using a value different from the default on purpose.
         cents = 51
         self.assertAlmostEqual(
-            main.get_threshold(thresholds, 0, f0),
-            (427.4740541075866, 452.8929841231365))
+            main.get_threshold(thresholds, 0, f0, cents=cents),
+            (f0 * pow(2, -cents/1200), f0 * pow(2, cents/1200)))
 
 
 if __name__ == '__main__':
