@@ -57,7 +57,8 @@ class TestGetThreshold(unittest.TestCase):
         partial['f'] = partial['n'] * f0
         self.assertAlmostEqual(
             main.get_threshold(thresholds, 1, f0, cents=cents),
-            (f0 * pow(2, -cents/1200), f0 * pow(2, cents/1200)))
+            (partial['f'] * pow(2, -cents/1200),
+             partial['f'] * pow(2, cents/1200)))
 
 
 if __name__ == '__main__':
