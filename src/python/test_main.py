@@ -67,5 +67,25 @@ class TestGetThreshold(unittest.TestCase):
              partial['f'] * pow(2, self.cents/1200)))
 
 
+    def test_get_threshold_skipping(self):
+        """Gets the thresholds, skipping a partial."""
+        thresholds = []
+        # Append the fundamental.
+        thresholds.append((self.f0 * pow(2, -self.cents/1200),
+                           self.f0 * pow(2, self.cents/1200)))
+        # Append the first upper partial.
+        partial = {}
+        partial['n'] = 2
+        partial['f'] = partial['n'] * self.f0
+        threshold = (partial['f'] * pow(2, -self.cents/1200),
+                     partial['f'] * pow(2, self.cents/1200))
+        thresholds.append(threshold)
+
+        self.assertAlmostEqual(
+            main.get_threshold(thresholds, 1, self.f0,
+                               cents=self.cents),
+            threshold)
+
+
 if __name__ == '__main__':
     unittest.main()
