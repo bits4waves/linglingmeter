@@ -17,4 +17,8 @@ class ArticlesSpider(scrapy.Spider):
         everything = response.css('div.c02 p b::text').extract()
         for i, x in enumerate(everything):
             if i < 162: continue
-            yield {'i': i, 'x': cleanup(x)}
+            if i % 2 == 0:
+                y = x
+            else:
+                y = y + ' ' + x
+                yield {'i': i, 'y': cleanup(y)}
