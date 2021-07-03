@@ -48,8 +48,10 @@ class TestGetThreshold(unittest.TestCase):
     def test_get_threshold_from_not_empty(self):
         """Gets the thresholds from a non-empty list."""
         f0, cents = 440, 51
+
         thresholds = [(f0 * pow(2, -cents/1200),
                        f0 * pow(2, cents/1200))]
+
         partial = {}
         partial['n'] = 2
         partial['f'] = partial['n'] * f0
