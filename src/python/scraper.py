@@ -16,13 +16,12 @@ class ArticlesSpider(scrapy.Spider):
     def parse(self, response):
         everything = response.css('div.c02 p b::text').extract()
         for i, x in enumerate(everything):
-            if i < 162:
-                # Journal entries.
-                yield {'i': i, 'x': cleanup(x)}
+            if i % 2 == 0:
+                y = x
             else:
-                # Article entries.
-                if i % 2 == 0:
-                    y = x
-                else:
-                    y = y + ' ' + x
-                    yield {'i': i, 'y': cleanup(y)}
+                y = y + ' ' + x
+
+                # Set it as a journal or article entry.
+                z = 'j' if i < 162 else 'a'
+
+                yield {'i': i, 'y': cleanup(y), 'z': z}
