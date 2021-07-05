@@ -7,9 +7,9 @@ def cleanup(s):
     return re.sub('\s+', ' ', re.sub('\n', '', s)).strip()
 
 
-class ArticlesSpider(scrapy.Spider):
+class InfoSpider(scrapy.Spider):
 
-    name = 'articles'
+    name = 'info'
     start_urls = ['file:///home/rafa/dev/linglingmeter/src/html/catgut-papers.html']
 
 
