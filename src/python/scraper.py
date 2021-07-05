@@ -14,14 +14,14 @@ class ArticlesSpider(scrapy.Spider):
 
 
     def parse(self, response):
-        everything = response.css('div.c02 p b::text').extract()
-        for i, x in enumerate(everything):
+        parts = response.css('div.c02 p b::text').extract()
+        for i, part in enumerate(parts):
             if i % 2 == 0:
-                y = x
+                info = part
             else:
-                y = y + ' ' + x
+                info = info + ' ' + part
 
                 # Set it as a journal or article entry.
-                z = 'j' if i < 162 else 'a'
+                type = 'j' if i < 162 else 'a'
 
-                yield {'i': i, 'y': cleanup(y), 'z': z}
+                yield {'i': i, 'info': cleanup(info), 'type': type}
