@@ -135,7 +135,6 @@ def integrate_peaks(f0, thresholds, frequencies, spectrum):
              'frequencies': [431, 441, 452],
              'spectrum': [-4, 0, -8],
              'integral': None}
-    pass
 
 
 def old_stuff():
