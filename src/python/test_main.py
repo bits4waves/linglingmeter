@@ -97,5 +97,16 @@ class TestIntegratePeaks(unittest.TestCase):
             0)
 
 
+    def test_sole_peak(self):
+        """Returns the sole peak's value for an individual peak."""
+        f0 = 440
+        thresholds = []
+        frequencies = [440]
+        spectrum = [1.0]
+        self.assertEqual(
+            main.integrate_peaks(f0, thresholds, frequencies, spectrum),
+            1.0)
+
+
 if __name__ == '__main__':
     unittest.main()
