@@ -13,6 +13,17 @@ class InfoSpider(scrapy.Spider):
     start_urls = ['file:///home/rafa/dev/linglingmeter/src/html/catgut-papers.html']
 
 
+    @staticmethod
+    def get_vol_maybe(info):
+        """Return volume number from text."""
+        m = re.search('(No\. ?)(\d*)', info)
+        if m:
+            vol = m.group(2)
+        else:
+            vol = None
+        return vol
+
+
     def parse(self, response):
         parts = response.css('div.c02 p b::text').extract()
         for i, part in enumerate(parts):
