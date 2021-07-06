@@ -87,5 +87,15 @@ class TestGetThreshold(unittest.TestCase):
             threshold)
 
 
+class TestIntegratePeaks(unittest.TestCase):
+    """Tests for function ‘integrate_peaks’."""
+    def test_silence(self):
+        """Returns 0 for an empty spectrum."""
+        self.assertEqual(
+            main.integrate_peaks(f0=0, thresholds=[], frequencies=[],
+                                 spectrum=[]),
+            0)
+
+
 if __name__ == '__main__':
     unittest.main()
