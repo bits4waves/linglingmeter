@@ -33,13 +33,12 @@ class InfoSpider(scrapy.Spider):
                 info = cleanup(info + ' ' + part)
 
                 # Set it as a journal or article entry.
-                type = 'j' if i < 162 else 'a'
 
                 if i < 162:
                     "Journal entries."
-                    pass
+                    type = 'journal'
                 else:
                     "Article entries."
-                    pass
+                    type = 'article'
 
                 yield {'i': i, 'info': info, 'type': type}
