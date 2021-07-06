@@ -128,13 +128,7 @@ def integrate_peaks(f0, thresholds, frequencies, spectrum):
 
         partial['n'] += 1
 
-    # i should be able to do with f0 and integration_limits
-    thing = {'f0': 440,
-             'integration_limits': (427, 453),
-             'array_indexes': [40, 41, 42],
-             'frequencies': [431, 441, 452],
-             'spectrum': [-4, 0, -8],
-             'integral': None}
+    return integral
 
 
 def old_stuff():
