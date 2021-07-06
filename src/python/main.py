@@ -117,7 +117,7 @@ def integrate_peaks(f0, thresholds, frequencies, spectrum):
     integral = 0
     while i < len(frequencies):
         partial['f'] = partial['n'] * f0
-        x_min, x_max = get_threshold(thresholds, i)
+        x_min, x_max = get_threshold(thresholds, i, f0)
 
         while frequencies[i] < x_min:
             i += 1
