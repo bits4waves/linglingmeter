@@ -122,7 +122,7 @@ def integrate_peaks(f0, thresholds, frequencies, spectrum):
         while (i < len(frequencies)) and (frequencies[i] < x_min):
             i += 1
 
-        while (i < len(frequencies)) and (frequencies[i] < x_max):
+        while (i < len(frequencies)) and (frequencies[i] <= x_max):
             integral += spectrum[i]
             i += 1
 
