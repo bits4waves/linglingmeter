@@ -32,6 +32,8 @@ class InfoSpider(scrapy.Spider):
             else:
                 info = cleanup(info + ' ' + part)
 
+                vol = self.get_vol_maybe(info)
+
                 if i < 162:
                     # Journal entries.
                     type = 'journal'
@@ -39,4 +41,7 @@ class InfoSpider(scrapy.Spider):
                     # Article entries.
                     type = 'article'
 
-                yield {'i': i, 'info': info, 'type': type}
+                yield {'i': i,
+                       'info': info,
+                       'type': type,
+                       'vol': vol}
