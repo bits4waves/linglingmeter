@@ -104,7 +104,8 @@ class TestIntegratePeaks(unittest.TestCase):
         frequencies = [440]
         spectrum = [1.0]
         self.assertEqual(
-            main.integrate_peaks(f0, thresholds, frequencies, spectrum),
+            main.integrate_peaks(f0, thresholds, frequencies,
+                                 spectrum),
             1.0)
 
 
@@ -115,7 +116,8 @@ class TestIntegratePeaks(unittest.TestCase):
         frequencies = [430, 435, 440, 445, 450]
         spectrum = [0.0, 1.0, 2.0, 4.0, 0.0]
         self.assertEqual(
-            main.integrate_peaks(f0, thresholds, frequencies, spectrum),
+            main.integrate_peaks(f0, thresholds, frequencies,
+                                 spectrum),
             7.0)
 
 
