@@ -113,10 +113,10 @@ class TestIntegratePeaks(unittest.TestCase):
         f0 = 440
         thresholds = [(435, 445)]
         frequencies = [430, 435, 440, 445, 450]
-        spectrum = [0, 1, 2, 4, 0]
+        spectrum = [0.0, 1.0, 2.0, 4.0, 0.0]
         self.assertEqual(
             main.integrate_peaks(f0, thresholds, frequencies, spectrum),
-            7)
+            7.0)
 
 
 if __name__ == '__main__':
