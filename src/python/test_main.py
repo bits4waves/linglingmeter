@@ -108,5 +108,16 @@ class TestIntegratePeaks(unittest.TestCase):
             1.0)
 
 
+    def test_sole_peak_with_tail(self):
+        """Returns sum of the peak's value plus its tails' values."""
+        f0 = 440
+        thresholds = [(435, 445)]
+        frequencies = [430, 435, 440, 445, 450]
+        spectrum = [0.0, 1.0, 1.0, 1.0, 0.0]
+        self.assertEqual(
+            main.integrate_peaks(f0, thresholds, frequencies, spectrum),
+            3.0)
+
+
 if __name__ == '__main__':
     unittest.main()
