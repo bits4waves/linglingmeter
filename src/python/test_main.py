@@ -121,5 +121,17 @@ class TestIntegratePeaks(unittest.TestCase):
             7.0)
 
 
+    def test_two_peaks(self):
+        """Returns the two individual peaks' value."""
+        f0 = 440
+        thresholds = [(435, 445), (875, 885)]
+        frequencies = [440, 880]
+        spectrum = [1.0, 2.0]
+        self.assertEqual(
+            main.integrate_peaks(f0, thresholds, frequencies,
+                                 spectrum),
+            3.0)
+
+
 if __name__ == '__main__':
     unittest.main()
