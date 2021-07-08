@@ -16,7 +16,7 @@ class InfoSpider(scrapy.Spider):
     @staticmethod
     def get_vol_maybe(info):
         """Return volume number from text."""
-        m = re.search('(No\. ?)(\d*)', info)
+        m = re.search('(Vol\. ?)(\d*)', info)
         if m:
             vol = m.group(2)
         else:
