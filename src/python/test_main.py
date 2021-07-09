@@ -39,44 +39,37 @@ class TestIntegratePeaks(unittest.TestCase):
     def test_silence(self):
         """Returns 0 for an empty spectrum."""
         self.assertEqual(
-            main.integrate_peaks(f0=0, thresholds=[], frequencies=[],
-                                 spectrum=[]),
+            main.integrate_peaks(f0=0, frequencies=[], spectrum=[]),
             0)
 
 
     def test_sole_peak(self):
         """Returns the sole peak's value for an individual peak."""
         f0 = 440
-        thresholds = []
         frequencies = [440]
         spectrum = [1.0]
         self.assertEqual(
-            main.integrate_peaks(f0, thresholds, frequencies,
-                                 spectrum),
+            main.integrate_peaks(f0, frequencies, spectrum),
             1.0)
 
 
     def test_sole_peak_with_tail(self):
         """Returns sum of the peak's value plus its tails' values."""
         f0 = 440
-        thresholds = [(435, 445)]
         frequencies = [430, 435, 440, 445, 450]
         spectrum = [0.0, 1.0, 2.0, 4.0, 0.0]
         self.assertEqual(
-            main.integrate_peaks(f0, thresholds, frequencies,
-                                 spectrum),
+            main.integrate_peaks(f0, frequencies, spectrum),
             7.0)
 
 
     def test_two_peaks(self):
         """Returns the two individual peaks' value."""
         f0 = 440
-        thresholds = [(435, 445), (875, 885)]
         frequencies = [440, 880]
         spectrum = [1.0, 2.0]
         self.assertEqual(
-            main.integrate_peaks(f0, thresholds, frequencies,
-                                 spectrum),
+            main.integrate_peaks(f0, frequencies, spectrum),
             3.0)
 
 
