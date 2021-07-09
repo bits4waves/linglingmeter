@@ -24,6 +24,18 @@ class InfoSpider(scrapy.Spider):
         return vol
 
 
+    @staticmethod
+    def get_number(info):
+        """Return issue number from text."""
+        number = None
+        for p in ['Number ', 'No\. ?']:
+            m = re.search(p + '(\d*)', info)
+            if m:
+                number = m.group(1)
+
+        return number
+
+
     def parse(self, response):
         parts = response.css('div.c02 p b::text').extract()
         for i, part in enumerate(parts):
@@ -33,6 +45,7 @@ class InfoSpider(scrapy.Spider):
                 info = cleanup(info + ' ' + part)
 
                 vol = self.get_vol_maybe(info)
+                number = self.get_number(info)
 
                 if i < 162:
                     # Journal entries.
@@ -44,4 +57,5 @@ class InfoSpider(scrapy.Spider):
                 yield {'i': i,
                        'info': info,
                        'type': type,
-                       'vol': vol}
+                       'vol': vol,
+                       'number': number}
