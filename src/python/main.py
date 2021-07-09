@@ -22,7 +22,7 @@ def create_threshold(partial, cents=THRESHOLD_CENTS):
             partial * pow(2, cents/1200))
 
 
-def integrate_peaks(f0, frequencies, spectrum):
+def integrate_peaks(f0, frequencies, spectrum, cents=THRESHOLD_CENTS):
     """Sum the intensities of the peaks in a sound spectrum.
 
     This function integrates the peaks corresponding to the partials.
@@ -104,7 +104,7 @@ def integrate_peaks(f0, frequencies, spectrum):
     integral = 0
     while True:
         partial['f'] = partial['n'] * f0
-        x_min, x_max = create_threshold(partial['f'])
+        x_min, x_max = create_threshold(partial['f'], cents=cents)
 
         while (i < len(frequencies)) and (frequencies[i] < x_min):
             i += 1
