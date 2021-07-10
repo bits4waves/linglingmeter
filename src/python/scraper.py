@@ -14,6 +14,15 @@ class InfoSpider(scrapy.Spider):
 
 
     @staticmethod
+    def get_info(parts):
+        """Return the entry's main data."""
+        try:
+            return cleanup(parts[0])
+        except Exception as e:
+            raise RuntimeError('Could not extract article info.')
+
+
+    @staticmethod
     def get_vol_maybe(info):
         """Return volume number from text."""
         m = re.search('(Vol\. ?)(\d*)', info)
@@ -37,25 +46,23 @@ class InfoSpider(scrapy.Spider):
 
 
     def parse(self, response):
-        parts = response.css('div.c02 p b::text').extract()
-        for i, part in enumerate(parts):
-            if i % 2 == 0:
-                info = part
-            else:
-                info = cleanup(info + ' ' + part)
+        entries = response.css('div.c02')
+        for entry in entries:
+            parts = entry.css('p b::text').extract()
 
-                vol = self.get_vol_maybe(info)
-                number = self.get_number(info)
+            info = self.get_info(parts)
+            vol = self.get_vol_maybe(info)
+            number = self.get_number(info)
 
-                if i < 162:
-                    # Journal entries.
-                    type = 'journal'
-                else:
-                    # Article entries.
-                    type = 'article'
+            # if i < 162:
+            #     # Journal entries.
+            #     type = 'journal'
+            # else:
+            #     # Article entries.
+            #     type = 'article'
 
-                yield {'i': i,
-                       'info': info,
-                       'type': type,
-                       'vol': vol,
-                       'number': number}
+            yield {# 'i': i,
+                   'info': info,
+                   # 'type': type,
+                   'vol': vol,
+                   'number': number}
