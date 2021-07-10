@@ -123,7 +123,6 @@ def integrate_peaks(f0, frequencies, spectrum, cents=THRESHOLD_CENTS):
 
 def old_stuff():
     """backup: old lingering stuff"""
-    
     y, f0 = get_f0_series('/home/rafa/dev/sound/440-10-partials/440-10-partials.wav')
 
     # Overlay F0 over a spectrogram
