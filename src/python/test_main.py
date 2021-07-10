@@ -73,5 +73,23 @@ class TestIntegratePeaks(unittest.TestCase):
             3.0)
 
 
+    def test_two_peaks_with_tails(self):
+        """Returns the two peaks' value plus their tails'."""
+        f0 = 440
+        frequencies = [220,
+                       439, 440, 441,
+                       880,
+                       1759, 1760, 1761,
+                       3520]
+        spectrum = [0.0,
+                    1.0, 2.0, 4.0,
+                    0.0,
+                    8.0, 16.0, 32.0,
+                    0.0]
+        self.assertEqual(
+            main.integrate_peaks(f0, frequencies, spectrum),
+            63.0)
+
+
 if __name__ == '__main__':
     unittest.main()
