@@ -1,4 +1,5 @@
 import librosa
+import numpy as np
 
 VIOLIN_MIN_F=librosa.note_to_hz('G3')
 VIOLIN_MAX_F=librosa.note_to_hz('E7')
@@ -168,14 +169,16 @@ def main():
     # Q: should I round the values to reduce the possible f0’s?
     # Q: in the resolution that I use here for frequencies, what’s the sensible rounding scheme (if any)?
 
-    # Focusing on just one “chunk” of reading
-    # Maybe create a class here?
-    f0 = get_f0()
-    thresholds = []
+    y, f0_series = get_f0_series('/home/rafa/dev/sound/440-10-partials/440-10-partials.wav')
 
-    peaks_integral = integrate_peaks(f0, thresholds)
-    total_integral = integrate_all()
-    lingling_measure = peaks_integral / total_integral
+    amplitude = np.abs(librosa.stft(y))
+    spectrum = librosa.amplitude_to_db(amplitude, ref=np.max)
+    frequencies = librosa.fft_frequencies()
+
+    i = 1
+    peaks_integral = integrate_peaks(f0_series[i], frequencies, spectrum[:,i])
+    # total_integral = integrate_all()
+    # lingling_measure = peaks_integral / total_integral
 
 
 if __name__ == '__main__':
