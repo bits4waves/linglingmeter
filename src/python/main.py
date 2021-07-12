@@ -8,7 +8,7 @@ VIOLIN_MAX_F=librosa.note_to_hz('E7')
 THRESHOLD_CENTS=50
 
 def get_f0_series(snd_filename, fmin=VIOLIN_MIN_F,
-                     fmax=VIOLIN_MAX_F):
+                  fmax=VIOLIN_MAX_F):
     """Extract f0 history from sound file."""
     y, sr = librosa.load(snd_filename)
     f0, voiced_flag, voiced_probs = \
