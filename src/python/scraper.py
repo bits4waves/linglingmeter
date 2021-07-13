@@ -63,8 +63,7 @@ class InfoSpider(scrapy.Spider):
             vol = self.get_vol_maybe(info)
             number = self.get_number(info)
 
-            yield {# 'i': i,
-                   'info': info,
+            yield {'info': info,
                    'type': issue_type,
                    'url': url,
                    'vol': vol,
