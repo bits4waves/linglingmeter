@@ -48,21 +48,22 @@ class InfoSpider(scrapy.Spider):
     def parse(self, response):
         entries = response.css('div.c02')
         for entry in entries:
+            online = entry.css('div.online')
+            if online:
+                # Journal entries.
+                type = 'journal'
+            else:
+                # Article entries.
+                type = 'article'
+
             parts = entry.css('p b::text').extract()
 
             info = self.get_info(parts)
             vol = self.get_vol_maybe(info)
             number = self.get_number(info)
 
-            # if i < 162:
-            #     # Journal entries.
-            #     type = 'journal'
-            # else:
-            #     # Article entries.
-            #     type = 'article'
-
             yield {# 'i': i,
                    'info': info,
-                   # 'type': type,
+                   'type': type,
                    'vol': vol,
                    'number': number}
