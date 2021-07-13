@@ -52,6 +52,7 @@ class InfoSpider(scrapy.Spider):
             if online:
                 # Journal entries.
                 type = 'journal'
+                url = online.css('a::attr(href)').extract_first()
             else:
                 # Article entries.
                 type = 'article'
@@ -65,5 +66,6 @@ class InfoSpider(scrapy.Spider):
             yield {# 'i': i,
                    'info': info,
                    'type': type,
+                   'url': url,
                    'vol': vol,
                    'number': number}
