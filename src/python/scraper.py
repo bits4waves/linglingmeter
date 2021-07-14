@@ -56,6 +56,7 @@ class InfoSpider(scrapy.Spider):
             else:
                 # Article entries.
                 issue_type = 'article'
+                url = None
 
             parts = entry.css('p b::text').extract()
 
