@@ -172,7 +172,9 @@ def main():
     y, f0_series = get_f0_series('/home/rafa/dev/sound/440-10-partials/440-10-partials.wav')
 
     amplitude = np.abs(librosa.stft(y))
-    spectrum = librosa.amplitude_to_db(amplitude, ref=np.max)
+    spectrum = librosa.amplitude_to_db(amplitude, ref=np.max, top_db=TOP_DB)
+    # Shift from the interval -80..0 to the interval 0..80.
+    spectrum += TOP_DB
     frequencies = librosa.fft_frequencies()
 
     i = 1
