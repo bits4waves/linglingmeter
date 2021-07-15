@@ -47,6 +47,17 @@ class InfoSpider(scrapy.Spider):
         return number
 
 
+    @staticmethod
+    def get_pages(info):
+        """Return the entry's page numbers."""
+        pages = None
+        m = re.findall('p\.? ?([-0-9]+)\.?$', info)
+        if m:
+            pages = m[-1]
+
+        return pages
+
+
     def parse(self, response):
         entries = response.css('div.c02')
         for entry in entries:
@@ -65,9 +76,11 @@ class InfoSpider(scrapy.Spider):
             info = self.get_info(parts)
             vol = self.get_vol_maybe(info)
             number = self.get_number(info)
+            pages = self.get_pages(info)
 
             yield {'info': info,
                    'type': issue_type,
                    'url': url,
                    'vol': vol,
-                   'number': number}
+                   'number': number,
+                   'pages': pages}
