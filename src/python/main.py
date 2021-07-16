@@ -170,7 +170,7 @@ def main():
     # Q: should I round the values to reduce the possible f0’s?
     # Q: in the resolution that I use here for frequencies, what’s the sensible rounding scheme (if any)?
 
-    y, f0_series = get_f0_series('/home/rafa/dev/sound/440-10-partials/440-10-partials.wav')
+    y, f0_series = get_f0_series('/home/rafa/dev/sound/440/440.wav')
 
     amplitude = np.abs(librosa.stft(y))
     spectrum = librosa.amplitude_to_db(amplitude, ref=np.max, top_db=TOP_DB)
