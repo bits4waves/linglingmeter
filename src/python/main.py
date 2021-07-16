@@ -6,6 +6,7 @@ VIOLIN_MAX_F=librosa.note_to_hz('E7')
 # Amount of cents before and after peak frequency to include in the
 # integration interval.
 THRESHOLD_CENTS=50
+TOP_DB=80
 
 def get_f0_series(snd_filename, fmin=VIOLIN_MIN_F,
                   fmax=VIOLIN_MAX_F):
