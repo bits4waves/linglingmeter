@@ -178,7 +178,8 @@ def main():
     spectrum += TOP_DB
     frequencies = librosa.fft_frequencies()
 
-    i = 1
+    # Avoid tails because of potential artifacts.
+    i = spectrum.shape[1] // 2
     peaks_integral = integrate_peaks(f0_series[i], frequencies, spectrum[:,i])
     # total_integral = integrate_all()
     # lingling_measure = peaks_integral / total_integral
