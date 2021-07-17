@@ -181,8 +181,10 @@ def main():
     # Avoid tails because of potential artifacts.
     i = spectrum.shape[1] // 2
     peaks_integral = integrate_peaks(f0_series[i], frequencies, spectrum[:,i])
-    # total_integral = integrate_all()
-    # lingling_measure = peaks_integral / total_integral
+    total_integral = spectrum[:,i].sum()
+    lingling_measure = peaks_integral / total_integral
+
+    print(f'{lingling_measure=}')
 
 
 if __name__ == '__main__':
