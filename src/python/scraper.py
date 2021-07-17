@@ -52,11 +52,13 @@ class InfoSpider(scrapy.Spider):
         """Return the entry's page numbers."""
         m = re.findall('(.*)(p\.? ?[-0-9]+\.?$)', info)
         if m:
+            prefix = m[0][0]
             pages = re.findall('[-0-9]+', m[0][1])[0]
         else:
+            prefix = info
             pages = None
 
-        return pages
+        return prefix, pages
 
 
     def parse(self, response):
@@ -77,7 +79,7 @@ class InfoSpider(scrapy.Spider):
             info = self.get_info(parts)
             vol = self.get_vol_maybe(info)
             number = self.get_number(info)
-            pages = self.get_pages(info)
+            _, pages = self.get_pages(info)
 
             yield {'info': info,
                    'type': issue_type,
