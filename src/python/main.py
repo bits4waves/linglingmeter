@@ -1,5 +1,6 @@
 import librosa
 import numpy as np
+import math
 
 VIOLIN_MIN_F=librosa.note_to_hz('G3')
 VIOLIN_MAX_F=librosa.note_to_hz('E7')
@@ -179,12 +180,16 @@ def main():
     frequencies = librosa.fft_frequencies()
 
     # Avoid tails because of potential artifacts.
-    i = spectrum.shape[1] // 2
-    peaks_integral = integrate_peaks(f0_series[i], frequencies, spectrum[:,i])
-    total_integral = spectrum[:,i].sum()
-    lingling_measure = peaks_integral / total_integral
+    lingling_measures = []
+    for i in range(spectrum.shape[1]):
+        if math.isnan(f0_series[i]): continue
+        peaks_integral = \
+            integrate_peaks(f0_series[i], frequencies, spectrum[:,i])
+        total_integral = spectrum[:,i].sum()
 
-    print(f'{lingling_measure=}')
+        lingling_measures.append(peaks_integral / total_integral)
+
+    print(f'{lingling_measures=}')
 
 
 if __name__ == '__main__':
