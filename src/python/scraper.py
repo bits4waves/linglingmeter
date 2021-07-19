@@ -33,6 +33,20 @@ class InfoSpider(scrapy.Spider):
 
 
     @staticmethod
+    def get_series(info):
+        """Return series number from text."""
+        prefix, series = info, None
+        m = re.findall('(.*)( \(Series II\)$)', info)
+        if m:
+            prefix = m[0][0]
+            n = re.findall('Series (.*)\)$', m[0][1])
+            if n:
+                series = n[0]
+
+        return prefix, series
+
+
+    @staticmethod
     def get_number(info):
         """Return issue number from text."""
         number = None
@@ -77,12 +91,14 @@ class InfoSpider(scrapy.Spider):
 
             info = self.get_info(parts)
             vol = self.get_vol_maybe(info)
-            number = self.get_number(info)
-            _, pages = self.get_pages(info)
+            prefix, series = self.get_series(info)
+            prefix, pages = self.get_pages(prefix)
+            number = self.get_number(prefix)
 
             yield {'info': info,
                    'type': issue_type,
                    'url': url,
                    'vol': vol,
                    'number': number,
+                   'series': series,
                    'pages': pages}
