@@ -162,19 +162,12 @@ def old_stuff():
     # score = integral_peaks / integrate_tail(pitch)
 
 
-def main():
-
-    # Some questions for when I’m working with the f0 series:
-    # Q: do I want/need to calculate this every time (note) (what about vibrato?)?
-    # Q: should I build a database of f0’s and corresponding thresholds?
-    # A: here I think definitely
-    # Q: should I round the values to reduce the possible f0’s?
-    # Q: in the resolution that I use here for frequencies, what’s the sensible rounding scheme (if any)?
-
-    y, f0_series = get_f0_series('/home/rafa/dev/sound/440-02-partials/440-02-partials.wav')
+def get_lingling_measures(file, top_db=TOP_DB):
+    """Return the history of lingling measurements."""
+    y, f0_series = get_f0_series(file)
 
     amplitude = np.abs(librosa.stft(y))
-    spectrum = librosa.amplitude_to_db(amplitude, ref=np.max, top_db=TOP_DB)
+    spectrum = librosa.amplitude_to_db(amplitude, ref=np.max, top_db=top_db)
     # Shift from the interval -80..0 to the interval 0..80.
     spectrum += TOP_DB
     frequencies = librosa.fft_frequencies()
@@ -189,6 +182,27 @@ def main():
 
         lingling_measures.append(peaks_integral / total_integral)
 
+    return lingling_measures
+
+
+def main():
+
+    # Some questions for when I’m working with the f0 series:
+    # Q: do I want/need to calculate this every time (note) (what about vibrato?)?
+    # Q: should I build a database of f0’s and corresponding thresholds?
+    # A: here I think definitely
+    # Q: should I round the values to reduce the possible f0’s?
+    # Q: in the resolution that I use here for frequencies, what’s the sensible rounding scheme (if any)?
+
+    sounds = [
+        '/home/rafa/dev/sound/440-10-partials/440-10-partials.wav',
+        '/home/rafa/dev/sound/players/hh.wav',
+        '/home/rafa/dev/linglingmeter-video-00/violin-me/20210607_193457.wav']
+
+    x = []
+    for sound in sounds:
+        x.append({'file': sound,
+                  'l2m': get_lingling_measures(sound)})
     print(f'{lingling_measures=}')
 
 
