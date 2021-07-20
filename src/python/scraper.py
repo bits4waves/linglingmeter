@@ -51,9 +51,9 @@ class InfoSpider(scrapy.Spider):
         """Return issue number from text."""
         number = None
         for p in ['Number ', 'No\. ?']:
-            m = re.findall(p + '(\d*)', info)
+            m = re.findall('(' + p + ')(\d*)', info)
             if m:
-                number = m[-1]
+                number = m[0][-1]
                 if len(m) > 1:
                     number += ' (+)'
 
