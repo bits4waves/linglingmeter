@@ -43,7 +43,7 @@ class InfoSpider(scrapy.Spider):
             if n:
                 series = n[0]
 
-        return prefix, series
+        return series, prefix
 
 
     @staticmethod
@@ -71,7 +71,7 @@ class InfoSpider(scrapy.Spider):
             prefix = info
             pages = None
 
-        return prefix, pages
+        return pages, prefix
 
 
     def parse(self, response):
@@ -91,8 +91,8 @@ class InfoSpider(scrapy.Spider):
 
             info = self.get_info(parts)
             vol = self.get_vol_maybe(info)
-            prefix, series = self.get_series(info)
-            prefix, pages = self.get_pages(prefix)
+            series, prefix = self.get_series(info)
+            pages, prefix = self.get_pages(prefix)
             number = self.get_number(prefix)
 
             yield {'info': info,
