@@ -196,8 +196,8 @@ def main():
 
     sounds = [
         '/home/rafa/dev/sound/440-10-partials/440-10-partials.wav',
-        '/home/rafa/dev/sound/players/hh.wav',
-        '/home/rafa/dev/linglingmeter-video-00/violin-me/20210607_193457.wav']
+        '/home/rafa/dev/sound/players/hh/hh.wav',
+        '/home/rafa/dev/sound/players/me/me.wav']
 
     x = []
     for sound in sounds:
