@@ -35,7 +35,7 @@ class InfoSpider(scrapy.Spider):
     @staticmethod
     def get_series(info):
         """Return series number from text."""
-        prefix, series = info, None
+        series, prefix = None, info
         m = re.findall('(.*)( \(Series II\)$)', info)
         if m:
             prefix = m[0][0]
