@@ -49,15 +49,15 @@ class InfoSpider(scrapy.Spider):
     @staticmethod
     def get_number(info):
         """Return issue number from text."""
-        number = None
+        number, prefix = None, info
         for p in ['Number ', 'No\. ?']:
-            m = re.findall('(' + p + ')(\d*)', info)
+            m = re.findall('(.*)(' + p + ')(\d*)(,? ?)$', info)
             if m:
-                number = m[0][-1]
-                if len(m) > 1:
-                    number += ' (+)'
+                prefix = m[0][0]
+                number = m[0][2]
+                break
 
-        return number
+        return number, prefix
 
 
     @staticmethod
@@ -93,7 +93,7 @@ class InfoSpider(scrapy.Spider):
             vol = self.get_vol_maybe(info)
             series, prefix = self.get_series(info)
             pages, prefix = self.get_pages(prefix)
-            number = self.get_number(prefix)
+            number, prefix = self.get_number(prefix)
 
             yield {'info': info,
                    'type': issue_type,
