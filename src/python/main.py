@@ -203,7 +203,8 @@ def main():
     for sound in sounds:
         x.append({'file': sound,
                   'l2m': get_lingling_measures(sound)})
-    print(f'{lingling_measures=}')
+
+    print(f'{x=}')
 
 
 if __name__ == '__main__':
