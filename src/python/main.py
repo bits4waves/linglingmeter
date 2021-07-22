@@ -193,6 +193,7 @@ def main():
     # A: here I think definitely
     # Q: should I round the values to reduce the possible f0’s?
     # Q: in the resolution that I use here for frequencies, what’s the sensible rounding scheme (if any)?
+    # Q: should I arrange it so that the synthesized sound have the max score?
 
     sounds = [
         '/home/rafa/dev/sound/440-10-partials/440-10-partials.wav',
