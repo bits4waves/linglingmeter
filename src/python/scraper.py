@@ -47,20 +47,6 @@ class InfoSpider(scrapy.Spider):
 
 
     @staticmethod
-    def get_number(info):
-        """Return issue number from text."""
-        number, prefix = None, info
-        for p in ['Number ', 'No\. ?']:
-            m = re.findall('(.*)(' + p + ')(\d*)(,? ?)$', info)
-            if m:
-                prefix = m[0][0]
-                number = m[0][2]
-                break
-
-        return number, prefix
-
-
-    @staticmethod
     def get_pages(info):
         """Return the entry's page numbers."""
         m = re.findall('(.*)(p\.? ?[-0-9]+\.?$)', info)
@@ -72,6 +58,20 @@ class InfoSpider(scrapy.Spider):
             pages = None
 
         return pages, prefix
+
+
+    @staticmethod
+    def get_number(info):
+        """Return issue number from text."""
+        number, prefix = None, info
+        for p in ['Number ', 'No\. ?']:
+            m = re.findall('(.*)(' + p + ')(\d*)(,? ?)$', info)
+            if m:
+                prefix = m[0][0]
+                number = m[0][2]
+                break
+
+        return number, prefix
 
 
     def parse(self, response):
