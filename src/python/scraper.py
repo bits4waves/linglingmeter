@@ -65,7 +65,7 @@ class InfoSpider(scrapy.Spider):
         """Return issue number from text."""
         number, prefix = None, info
         for p in ['Number ', 'No\. ?']:
-            m = re.findall('(.*)(' + p + ')(\d*)(,? ?)$', info)
+            m = re.findall('(.*)(' + p + ')(\d*)([.,]? ?)$', info)
             if m:
                 prefix = m[0][0]
                 number = m[0][2]
