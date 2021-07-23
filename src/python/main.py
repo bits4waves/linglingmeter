@@ -192,6 +192,20 @@ def get_l2ms(x):
         l2ms.append(d['l2m'])
 
 
+def plot_x(x):
+
+    import matplotlib.pyplot as plt
+    plt.axis([0, 10, 0, 5])
+
+    # plt.xlabel
+    # plt.ylabel
+
+    plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
+    # plt.plot(t, t, 'r--', t, t**2, 'bs', t, t**3, 'g^')
+
+    plt.show()
+
+
 def main():
 
     # Some questions for when I’m working with the f0 series:
