@@ -185,6 +185,13 @@ def get_lingling_measures(file, top_db=TOP_DB):
     return lingling_measures
 
 
+def get_l2ms(x):
+    """Return the lingling measurements."""
+    l2ms = []
+    for d in x:
+        l2ms.append(d['l2m'])
+
+
 def main():
 
     # Some questions for when I’m working with the f0 series:
