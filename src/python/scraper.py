@@ -49,10 +49,10 @@ class InfoSpider(scrapy.Spider):
     @staticmethod
     def get_pages(info):
         """Return the entry's page numbers."""
-        m = re.findall('(.*)([pP]\.? ?[-0-9]+\.?$)', info)
+        m = re.findall('(.*)([pP]\.? ?[-0-9]+( and [0-9]*)?\.?$)', info)
         if m:
             prefix = m[0][0]
-            pages = re.findall('[-0-9]+', m[0][1])[0]
+            pages = re.findall('([-0-9]+( and [0-9]*)?)', m[0][1])[0][0]
         else:
             prefix = info
             pages = None
