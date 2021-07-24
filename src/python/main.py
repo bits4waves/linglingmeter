@@ -191,6 +191,8 @@ def get_l2ms(x):
     for d in x:
         l2ms.append(d['l2m'])
 
+    return l2ms
+
 
 def plot_x(x):
 
