@@ -196,13 +196,21 @@ def get_l2ms(x):
 
 def plot_x(x):
 
+    import matplotlib
     import matplotlib.pyplot as plt
-    plt.axis([0, 10, 0, 5])
+
+    matplotlib.use('gtk3agg')
+
+    l2ms = get_l2ms(x)
+    for l2m in l2ms:
+        plt.plot(l2m)
+
+    # plt.axis([0, 10, 0, 5])
 
     # plt.xlabel
     # plt.ylabel
 
-    plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
+    # plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
     # plt.plot(t, t, 'r--', t, t**2, 'bs', t, t**3, 'g^')
 
     plt.show()
@@ -228,7 +236,7 @@ def main():
         x.append({'file': sound,
                   'l2m': get_lingling_measures(sound)})
 
-    print(f'{x=}')
+    plot_x(x)
 
 
 if __name__ == '__main__':
