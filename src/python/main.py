@@ -204,8 +204,6 @@ def plot_x(x):
     for y in x:
         plt.plot(y['l2m'], label=y['file'])
 
-    # plt.axis([0, 10, 0, 5])
-
     # plt.xlabel
     # plt.ylabel
 
