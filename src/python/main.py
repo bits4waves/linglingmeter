@@ -204,8 +204,8 @@ def plot_x(x):
     for y in x:
         plt.plot(y['l2m'], label=y['file'])
 
-    # plt.xlabel
-    # plt.ylabel
+    plt.xlabel('Time')
+    plt.ylabel('LingLing measure')
 
     # plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
     # plt.plot(t, t, 'r--', t, t**2, 'bs', t, t**3, 'g^')
