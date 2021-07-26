@@ -201,9 +201,8 @@ def plot_x(x):
 
     matplotlib.use('gtk3agg')
 
-    l2ms = get_l2ms(x)
-    for l2m in l2ms:
-        plt.plot(l2m)
+    for y in x:
+        plt.plot(y['l2m'], label=y['file'])
 
     # plt.axis([0, 10, 0, 5])
 
@@ -212,6 +211,8 @@ def plot_x(x):
 
     # plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
     # plt.plot(t, t, 'r--', t, t**2, 'bs', t, t**3, 'g^')
+
+    plt.legend()
 
     plt.show()
 
