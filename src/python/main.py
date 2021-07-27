@@ -228,6 +228,8 @@ def main():
     sounds = [
         '/home/rafa/dev/sound/440-10-partials/440-10-partials.wav',
         '/home/rafa/dev/sound/players/hh/hh.wav',
+        '/home/rafa/dev/sound/players/ss/ss.wav',
+        '/home/rafa/dev/sound/players/jh/jh.wav',
         '/home/rafa/dev/sound/players/me/me.wav']
 
     x = []
