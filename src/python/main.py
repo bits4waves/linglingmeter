@@ -234,6 +234,7 @@ def main():
 
     x = []
     for sound in sounds:
+        print(f'Processing {sound}')
         x.append({'file': sound,
                   'l2m': get_lingling_measures(sound)})
 
