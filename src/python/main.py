@@ -201,14 +201,14 @@ def plot_x(x):
 
     matplotlib.use('gtk3agg')
 
-    for y in x:
-        plt.plot(y['l2m'], label=y['file'])
+    fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2, 3)
 
+    l2ms = [y['l2m'] for y in x]
+    # for y in x:
+    #     plt.plot(y['l2m'], label=y['file'])
+    
     plt.xlabel('Time')
     plt.ylabel('LingLing measure')
-
-    # plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
-    # plt.plot(t, t, 'r--', t, t**2, 'bs', t, t**3, 'g^')
 
     plt.legend()
 
@@ -226,19 +226,30 @@ def main():
     # Q: should I arrange it so that the synthesized sound have the max score?
 
     sounds = [
-        '/home/rafa/dev/sound/440-10-partials/440-10-partials.wav',
-        '/home/rafa/dev/sound/players/hh/hh.wav',
-        '/home/rafa/dev/sound/players/ss/ss.wav',
-        '/home/rafa/dev/sound/players/jh/jh.wav',
-        '/home/rafa/dev/sound/players/me/me.wav']
+        '/home/rafa/dev/sound/players/hh/npr/01/01.wav',
+        '/home/rafa/dev/sound/players/hh/npr/02/02.wav',
+        '/home/rafa/dev/sound/players/hh/npr/03/03.wav',
+        '/home/rafa/dev/sound/players/hh/npr/04/04.wav',
+        '/home/rafa/dev/sound/players/hh/npr/05/05.wav',
+        '/home/rafa/dev/sound/players/hh/npr/06/06.wav',
+        ]
 
     x = []
-    for sound in sounds:
-        print(f'Processing {sound}')
-        x.append({'file': sound,
-                  'l2m': get_lingling_measures(sound)})
+    # for sound in sounds:
+    #     print(f'Processing {sound}')
+    #     x.append({'file': sound,
+    #               'l2m': get_lingling_measures(sound)})
 
-    plot_x(x)
+    y = np.linspace(0, 2, 100)
+    x = [
+        {'l2m': y**1, 'file'='1'}
+        y**2, label='2'
+        y**3, label='3'
+        y**4, label='4'
+        y**5, label='5'
+        y**6, label='6'
+    ]
+    plot_x(y)
 
 
 if __name__ == '__main__':
