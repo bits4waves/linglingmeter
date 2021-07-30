@@ -201,16 +201,16 @@ def plot_x(x):
 
     matplotlib.use('gtk3agg')
 
-    fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2, 3)
+    fig, axs = plt.subplots(2, 3)
 
-    l2ms = [y['l2m'] for y in x]
-    # for y in x:
-    #     plt.plot(y['l2m'], label=y['file'])
-    
-    plt.xlabel('Time')
-    plt.ylabel('LingLing measure')
-
-    plt.legend()
+    i = 231
+    for y in x:
+        plt.subplot(i)
+        plt.xlabel('Time')
+        plt.ylabel('LingLing measure')
+        plt.plot(y['l2m'], label=y['file'])
+        plt.legend()
+        i += 1
 
     plt.show()
 
@@ -235,21 +235,12 @@ def main():
         ]
 
     x = []
-    # for sound in sounds:
-    #     print(f'Processing {sound}')
-    #     x.append({'file': sound,
-    #               'l2m': get_lingling_measures(sound)})
+    for sound in sounds:
+        print(f'Processing {sound}')
+        x.append({'file': sound,
+                  'l2m': get_lingling_measures(sound)})
 
-    y = np.linspace(0, 2, 100)
-    x = [
-        {'l2m': y**1, 'file'='1'}
-        y**2, label='2'
-        y**3, label='3'
-        y**4, label='4'
-        y**5, label='5'
-        y**6, label='6'
-    ]
-    plot_x(y)
+    plot_x(x)
 
 
 if __name__ == '__main__':
