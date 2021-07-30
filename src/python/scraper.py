@@ -77,27 +77,34 @@ class InfoSpider(scrapy.Spider):
     def parse(self, response):
         entries = response.css('div.c02')
         for entry in entries:
+            parts = entry.css('p b::text').extract()
+
+            info = self.get_info(parts)
+            vol = self.get_vol_maybe(info)
+            if vol is None:
+                vol = '0'
+            series, prefix = self.get_series(info)
+            pages, prefix = self.get_pages(prefix)
+            number, prefix = self.get_number(prefix)
+
             online = entry.css('div.online')
             if online:
                 # Journal entries.
                 issue_type = 'journal'
                 url = online.css('a::attr(href)').extract_first()
+                file_id = url[-11:]
+                pdf_url = f'https://stacks.stanford.edu/file/druid:{file_id}/CAS_{file_id}.pdf'
+                wget_command = f'wget {pdf_url} -o vol-{vol}-number-{number}.pdf'
             else:
                 # Article entries.
                 issue_type = 'article'
-                url = None
+                pdf_url = None
+                wget_command = None
 
-            parts = entry.css('p b::text').extract()
-
-            info = self.get_info(parts)
-            vol = self.get_vol_maybe(info)
-            series, prefix = self.get_series(info)
-            pages, prefix = self.get_pages(prefix)
-            number, prefix = self.get_number(prefix)
-
-            yield {'info': info,
+            yield {'wget_command': wget_command,
+                   'info': info,
                    'type': issue_type,
-                   'url': url,
+                   'pdf_url': pdf_url,
                    'vol': vol,
                    'number': number,
                    'series': series,
