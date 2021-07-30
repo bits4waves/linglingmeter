@@ -94,7 +94,7 @@ class InfoSpider(scrapy.Spider):
                 url = online.css('a::attr(href)').extract_first()
                 file_id = url[-11:]
                 pdf_url = f'https://stacks.stanford.edu/file/druid:{file_id}/CAS_{file_id}.pdf'
-                wget_command = f'wget {pdf_url} -o vol-{vol}-number-{number}.pdf'
+                wget_command = f'wget {pdf_url} -O vol-{vol}-number-{number}.pdf'
             else:
                 # Article entries.
                 issue_type = 'article'
