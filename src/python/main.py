@@ -209,6 +209,7 @@ def plot_x(x):
         plt.subplot(i)
         plt.xlabel('Time')
         plt.ylabel('LingLing measure')
+        plt.ylim(0, 0.85)
         plt.plot(y['l2m'], label=y['file'])
         # plot the moving window average
         pd.Series(y['l2m']).rolling(window=7).mean().plot(style='k')
