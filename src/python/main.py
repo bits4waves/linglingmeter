@@ -198,6 +198,7 @@ def plot_x(x):
 
     import matplotlib
     import matplotlib.pyplot as plt
+    import pandas as pd
 
     matplotlib.use('gtk3agg')
 
@@ -209,6 +210,8 @@ def plot_x(x):
         plt.xlabel('Time')
         plt.ylabel('LingLing measure')
         plt.plot(y['l2m'], label=y['file'])
+        # plot the moving window average
+        pd.Series(y['l2m']).rolling(window=7).mean().plot(style='k')
         plt.legend()
         i += 1
 
