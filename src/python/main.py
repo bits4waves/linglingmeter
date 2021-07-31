@@ -228,13 +228,20 @@ def main():
     # Q: in the resolution that I use here for frequencies, what’s the sensible rounding scheme (if any)?
     # Q: should I arrange it so that the synthesized sound have the max score?
 
+    debug = True
+
+    if debug:
+        suffix = '-debug'
+    else:
+        suffix = ''
+
     sounds = [
-        '/home/rafa/dev/sound/players/hh/npr/01/01.wav',
-        '/home/rafa/dev/sound/players/hh/npr/02/02.wav',
         '/home/rafa/dev/sound/players/hh/npr/03/03.wav',
         '/home/rafa/dev/sound/players/hh/npr/04/04.wav',
-        '/home/rafa/dev/sound/players/hh/npr/05/05.wav',
         '/home/rafa/dev/sound/players/hh/npr/06/06.wav',
+        '/home/rafa/dev/sound/players/hh/npr/01/01' + suffix + '.wav',
+        '/home/rafa/dev/sound/players/hh/npr/02/02' + suffix + '.wav',
+        '/home/rafa/dev/sound/players/hh/npr/05/05' + suffix + '.wav',
         ]
 
     x = []
