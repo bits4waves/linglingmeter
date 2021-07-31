@@ -202,9 +202,9 @@ def plot_x(x):
 
     matplotlib.use('gtk3agg')
 
-    fig, axs = plt.subplots(2, 3)
+    fig, axs = plt.subplots(3, 1)
 
-    i = 231
+    i = 311
     for y in x:
         plt.subplot(i)
         plt.xlabel('Time')
@@ -236,9 +236,6 @@ def main():
         suffix = ''
 
     sounds = [
-        '/home/rafa/dev/sound/players/hh/npr/03/03.wav',
-        '/home/rafa/dev/sound/players/hh/npr/04/04.wav',
-        '/home/rafa/dev/sound/players/hh/npr/06/06.wav',
         '/home/rafa/dev/sound/players/hh/npr/01/01' + suffix + '.wav',
         '/home/rafa/dev/sound/players/hh/npr/02/02' + suffix + '.wav',
         '/home/rafa/dev/sound/players/hh/npr/05/05' + suffix + '.wav',
