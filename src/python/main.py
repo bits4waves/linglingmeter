@@ -138,10 +138,10 @@ def get_lingling_measures(file, top_db=TOP_DB):
     lingling_measures = []
     for i in range(spectrum.shape[1]):
         if math.isnan(f0_series[i]): continue
+
         peaks_integral = \
             integrate_peaks(f0_series[i], frequencies, spectrum[:,i])
         total_integral = spectrum[:,i].sum()
-
         lingling_measures.append(peaks_integral / total_integral)
 
     return lingling_measures
