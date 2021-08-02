@@ -124,6 +124,19 @@ def integrate_peaks(f0, frequencies, spectrum, cents=THRESHOLD_CENTS):
     return integral
 
 
+def integrate_whole(f0, frequencies, spectrum, cents=THRESHOLD_CENTS):
+    """Integrate the “whole”, the curve of interest.
+
+    It may be the whole curve or just the partials."""
+    x_min, _ = create_threshold(f0, cents=cents)
+
+    i = 0
+    while (i < len(frequencies)) and (frequencies[i] < x_min):
+        i += 1
+
+    return spectrum[i:].sum()
+
+
 def get_lingling_measures(file, top_db=TOP_DB):
     """Return the history of lingling measurements."""
     y, f0_series = get_f0_series(file)
@@ -141,7 +154,8 @@ def get_lingling_measures(file, top_db=TOP_DB):
 
         peaks_integral = \
             integrate_peaks(f0_series[i], frequencies, spectrum[:,i])
-        total_integral = spectrum[:,i].sum()
+        total_integral = \
+            integrate_whole(f0_series[i], frequencies, spectrum[:,i])
         lingling_measures.append(peaks_integral / total_integral)
 
     return lingling_measures
